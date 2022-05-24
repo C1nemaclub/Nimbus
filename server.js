@@ -1,17 +1,20 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const expressLayouts = require('express-ejs-layouts');
-require('dotenv').config();
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
 
+const express = require('express');
 const app = express();
-app.use(express.json());
-app.use(express.static('public'));
-app.use(bodyParser.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(expressLayouts);
+const expressLayouts = require('express-ejs-layouts');
+const bodyParser = require('body-parser');
+
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 app.set('layout', 'layouts/layout');
+app.use(expressLayouts);
+app.use(express.static('public'));
+app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }));
 
 const weatherRoute = require('./routes/weather');
 app.use('/weather', weatherRoute);
@@ -19,12 +22,16 @@ app.use('/weather', weatherRoute);
 const indexRoute = require('./routes/index');
 app.use('/x', indexRoute);
 
-app.get('/', (req, res) => {
-  res.render('test', { data: req.query.name });
-});
+try {
+  app.get('/', (req, res) => {
+    res.render('test');
+  });
 
-const port = process.env.PORT || 3000;
+  const port = process.env.PORT || 3000;
 
-app.listen(port, () => {
-  console.log(`Hosting server on port ${port}`);
-});
+  app.listen(port, () => {
+    console.log(`Hosting server on port ${port}`);
+  });
+} catch (e) {
+  console.log(e);
+}
