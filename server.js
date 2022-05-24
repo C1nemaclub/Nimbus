@@ -19,9 +19,13 @@ app.use('/', indexRoute);
 
 const port = process.env.PORT || 3000;
 
-app.listen(port, () => {
-  console.log(`Hosting server on port ${port}`);
-});
+try {
+  app.listen(port, () => {
+    console.log(`Hosting server on port ${port}`);
+  });
+} catch (e) {
+  console.log(e);
+}
 
 // app.get('/', (req, res) => {
 //   res.render('index');
