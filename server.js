@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const expressLayouts = require('express-ejs-layouts');
+require('dotenv').config();
 
 const app = express();
 app.use(express.json());
@@ -26,7 +27,3 @@ try {
 } catch (e) {
   console.log(e);
 }
-
-// app.get('/', (req, res) => {
-//   res.render('index');
-// });
