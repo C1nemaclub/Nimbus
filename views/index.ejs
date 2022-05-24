@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <title>Index</title>
+  </head>
+  <body>
+    <h2 class="hero-header">
+      GET <span>WEATHER</span> INFORMATION AROUND THE GLOBE
+    </h2>
+    <div class="form-container">
+      <form action="/weather" method="get">
+        <input
+          class="input-field"
+          placeholder="Enter a city..."
+          type="city"
+          name="city"
+          required
+        />
+        <input type="hidden" name="type" value="city" />
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+      Or
+      <div class="btn-wrapper">
+        <button id="locator-btn" class="btn btn-primary">Locate</button>
+      </div>
+    </div>
+    <div class="main-section">
+      <% data.forEach((city)=>{%>
+      <div class="card">
+        <div class="location"><%= city.name %>, <%= city.sys.country %></div>
+        <div class="description"><%=city.weather[0].description %></div>
+        <div class="flex">
+          <div class="temp"><%= city.main.temp %>°C</div>
+          <img
+            class="icon"
+            src="http://openweathermap.org/img/wn/<%= city.weather[0].icon%>@2x.png"
+            alt=""
+          />
+        </div>
+        <div class="properties">
+          <div class="humidity">
+            <%= city.main.humidity %>% Humidity
+            <img src="" alt="" />
+          </div>
+          <div clacityss="wind">
+            <%= city.wind.speed %> Km/h Winds
+            <img src="" alt="" />
+          </div>
+        </div>
+      </div>
+      <% })%>
+    </div>
+    <script>
+      let data = JSON.parse('<%- JSON.stringify(data) %>');
+      console.log(data);
+
+      const locationButton = document.querySelector('#locator-btn');
+
+      locationButton.addEventListener('click', () => {
+        if ('geolocation' in navigator) {
+          navigator.geolocation.getCurrentPosition(async function (position) {
+            window.location.href = `/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&type=coord`;
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
