@@ -1,3 +1,12 @@
+const Nav = document.querySelector('.nav-links');
+const a = document.createElement('a');
+const listItem = document.createElement('li');
+
+a.textContent = 'Back';
+a.href = '/';
+listItem.appendChild(a);
+Nav.appendChild(listItem);
+
 const lat = data.coord.lat;
 const lon = data.coord.lon;
 
@@ -38,14 +47,5 @@ L.geoJSON(cities, {
     }
   },
 }).addTo(map);
-
-const Nav = document.querySelector('.nav-links');
-const a = document.createElement('a');
-const listItem = document.createElement('li');
-
-a.textContent = 'Back';
-a.href = '/';
-listItem.appendChild(a);
-Nav.appendChild(listItem);
 
 console.log(data);

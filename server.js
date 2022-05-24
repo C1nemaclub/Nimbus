@@ -20,18 +20,10 @@ const weatherRoute = require('./routes/weather');
 app.use('/weather', weatherRoute);
 
 const indexRoute = require('./routes/index');
-app.use('/x', indexRoute);
+app.use('/', indexRoute);
 
-try {
-  app.get('/', (req, res) => {
-    res.render('test');
-  });
+const port = process.env.PORT || 3000;
 
-  const port = process.env.PORT || 3000;
-
-  app.listen(port, () => {
-    console.log(`Hosting server on port ${port}`);
-  });
-} catch (e) {
-  console.log(e);
-}
+app.listen(port, () => {
+  console.log(`Hosting server on port ${port}`);
+});
