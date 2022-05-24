@@ -10,6 +10,7 @@ app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
+app.set('views', __dirname + '/views');
 app.set('layout', 'layouts/layout');
 
 const weatherRoute = require('./routes/weather');
