@@ -16,10 +16,10 @@ const weatherRoute = require('./routes/weather');
 app.use('/weather', weatherRoute);
 
 const indexRoute = require('./routes/index');
-app.use('/X', indexRoute);
+app.use('/', indexRoute);
 
-app.get('/', (req, res) => {
-  res.send('he');
+app.get('/x', (req, res) => {
+  res.send('hello ' + req.query.name);
 });
 
 const port = process.env.PORT || 3000;
