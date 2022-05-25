@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
+const time = require('../models/time');
+const { json } = require('body-parser');
+
 require('dotenv').config();
 
 const api_key = process.env.API_KEY;
@@ -19,32 +22,11 @@ router.get('/', async (req, res) => {
     const c3_response = await fetch(c3_url);
     const c3_json = await c3_response.json();
 
-    const d1 = new Date(new Date().getTime() + c1_json.timezone * 1000);
-    d1.toISOString();
-
-    const d2 = new Date(new Date().getTime() + c2_json.timezone * 1000);
-    d2.toISOString();
-
-    const d3 = new Date(new Date().getTime() + c3_json.timezone * 1000);
-    d3.toISOString();
-
-    let getTime = (milli) => {
-      let time = new Date(milli);
-      let hours = time.getUTCHours();
-      let minutes = time.getUTCMinutes();
-      let seconds = time.getUTCSeconds();
-      return hours + ':' + minutes + ':' + seconds;
-    };
-
-    const c1_time = getTime(d1.getTime());
-    const c2_time = getTime(d2.getTime());
-    const c3_time = getTime(d3.getTime());
-
-    c1_json.time = c1_time;
-    c2_json.time = c2_time;
-    c3_json.time = c3_time;
-
     const data = [];
+
+    c1_json.time = time(c1_json.timezone);
+    c2_json.time = time(c2_json.timezone);
+    c3_json.time = time(c3_json.timezone);
 
     data.push(c1_json);
     data.push(c2_json);

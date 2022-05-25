@@ -47,5 +47,3 @@ L.geoJSON(cities, {
     }
   },
 }).addTo(map);
-
-console.log(data);

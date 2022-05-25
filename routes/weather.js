@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
 const cities = require('../public/json/cities.json');
+const time = require('../models/time');
 require('dotenv').config();
 
 const api_key = process.env.API_KEY;
@@ -27,6 +28,8 @@ async function byCity(city, res) {
         flag = 1;
       }
     });
+
+    json.time = time(json.timezone);
     let description = json.weather[0].description;
     description = description.charAt(0).toUpperCase() + description.slice(1);
     json.weather[0].description = description;
@@ -56,6 +59,7 @@ async function byCoords(lat, lon, res) {
         flag = 1;
       }
     });
+    json.time = time(json.timezone);
     let description = json.weather[0].description;
     description = description.charAt(0).toUpperCase() + description.slice(1);
     json.weather[0].description = description;
