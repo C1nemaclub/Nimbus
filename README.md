@@ -11,6 +11,7 @@ This web application was made using the OpenWeather web API for weather informat
 * Node.js Server
 * Express.js as a server framework
 * Ejs view engine
+* Leaflet.js for the maps!
 
 
 **Features**
