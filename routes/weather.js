@@ -33,7 +33,7 @@ async function byCity(city, res) {
     let description = json.weather[0].description;
     description = description.charAt(0).toUpperCase() + description.slice(1);
     json.weather[0].description = description;
-
+    
     if (response.status == 200) {
       res.render('weather/weather', { data: json });
     } else {

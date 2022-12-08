@@ -1,0 +1,84 @@
+.main-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card {
+  padding: 1rem;
+  border-radius: 0.25rem;
+}
+
+.n {
+  background: rgb(44, 54, 139);
+  background: linear-gradient(
+    236deg,
+    rgba(44, 54, 139, 0.85) 30%,
+    rgba(28, 28, 26, 0.85) 100%
+  );
+}
+
+.d {
+  background: rgb(134, 124, 29);
+  background: linear-gradient(
+    236deg,
+    rgba(134, 124, 29, 1) 35%,
+    rgba(28, 28, 26, 1) 83%
+  );
+}
+
+.card > .location {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.card > .time {
+  font-size: 1.5rem;
+}
+
+.card > .description {
+  font-size: 1.3rem;
+}
+
+.card > .flex {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.card > .flex > .temp {
+  font-size: 4rem;
+}
+
+.card > .flex > .icons-row {
+  display: flex;
+  justify-content: center;
+}
+
+.card > .flex > .icons-row > .icon:last-child {
+  margin-left: -2rem;
+}
+
+.card > .properties {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.3rem;
+  gap: 1.5rem;
+}
+
+.humidity,
+.wind {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.humidity img,
+.wind img {
+  width: 35px;
+}

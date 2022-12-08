@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
+@import 'shared/header.css';
+@import 'shared/card.css';
+@import 'shared/mapModal.css';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+  font-family: 'Baloo 2', cursive;
+}
+
+.wrapper {
+  background: url('../assets/WorldMap.svg') fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+}
+
+.hero-header {
+  font-size: 3rem;
+  width: 50%;
+  text-align: center;
+  margin: auto;
+}
+
+.hero-header span {
+  color: rgba(152, 176, 255, 0.877);
+}
+
+.form-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 4rem;
+  flex-wrap: wrap;
+}
+
+form {
+  position: relative;
+  padding: 1rem;
+  background: rgba(87, 160, 255, 0.3);
+  border-radius: 0.5rem;
+}
+
+.input-field {
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 1.2rem;
+  outline: none;
+  border: 0;
+  color: black;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  color: black;
+  border-radius: 0.25rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border: 0;
+  position: relative;
+  transition: 0.3s ease-in-out;
+  z-index: 1;
+  overflow: hidden;
+  &::after {
+    z-index: -1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: dodgerblue;
+    clip-path: circle(0.5% at 0 0);
+    transition: 0.3s linear;
+  }
+  &:hover::after {
+    clip-path: circle(140.9% at 0 0);
+  }
+  &:hover {
+    color: white;
+  }
+}
+
+#locator-btn {
+  margin-left: 0.5rem;
+}
+
+.btn-wrapper {
+  padding: 1rem;
+  background: rgba(87, 160, 255, 0.3);
+}

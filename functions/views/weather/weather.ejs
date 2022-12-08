@@ -1,0 +1,36 @@
+
+<title><%= data.name %> Weather</title>
+<section class="main-section">
+  <div class="card <%= data.weather[0].icon[data.weather[0].icon.length -1] %>">
+    <div class="location"><%= data.name %>, <%= data.sys.country %></div>
+    <div class="time"><%= data.time %></div>
+    <div class="description"><%=data.weather[0].description %></div>
+    <div class="flex">
+      <div class="temp"><%= data.main.temp %>°C</div>
+      <div class="icons-row">
+        <% data.weather.forEach((item)=> {%>
+        <img
+          class="icon"
+          src="http://openweathermap.org/img/wn/<%= item.icon%>@2x.png"
+          alt=""
+        />
+        <% }) %>
+      </div>
+    </div>
+    <div class="properties">
+      <div class="humidity">
+        <%= data.main.humidity %>% Humidity
+        <img src="/assets/humidity.png" alt="" />
+      </div>
+      <div class="wind">
+        <%= data.wind.speed %> Km/h Winds
+        <img src="/assets/wind.png" alt="" />
+      </div>
+    </div>
+  </div>
+  <div id="issMap"></div>
+</section>
+<script>
+  let data = JSON.parse('<%- JSON.stringify(data) %>');
+</script>
+<script src="scripts/city.js"></script>
